@@ -2,6 +2,28 @@
 // Task: Implement a datasource connector to abstract away data retrieval and manipulation from the `ViewControllers`.  
 // Your solution shall use only [Vanilla JavaScript](http://vanilla-js.com).  
 
+/* MODEL VIEW CONTROLLER FRAMEWORK */
+
+// Price Model
+class Price {
+    constructor(buy, sell, id, pair, timestamp) {
+        this.buy = buy;
+        this.sell = sell;
+        this.id = id;
+        this.pair = pair;
+        this.timestamp = timestamp;
+    }
+    mid() {
+        return (this.buy + this.sell)/2;
+    }
+    quote() {
+        var ans="";
+        for (var i=3;i<this.pair.length;i++) ans += this.pair[i];
+        return ans;
+    }
+} 
+
+// DataSource Controller
 class DataSource {
   getPrices() {
     return fetch('https://static.ngnrs.io/test/prices').then(response => {
@@ -22,24 +44,7 @@ class DataSource {
   }
 }
 
-class Price {
-    constructor(buy, sell, id, pair, timestamp) {
-        this.buy = buy;
-        this.sell = sell;
-        this.id = id;
-        this.pair = pair;
-        this.timestamp = timestamp;
-    }
-    mid() {
-        return (this.buy + this.sell)/2;
-    }
-    quote() {
-        var ans="";
-        for (var i=3;i<this.pair.length;i++) ans += this.pair[i];
-        return ans;
-    }
-} 
-
+// Abstraction 
 let ds = new DataSource();
 ds.getPrices().then(prices => {
     prices.forEach(price => {
