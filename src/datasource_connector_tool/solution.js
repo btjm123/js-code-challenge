@@ -30,17 +30,14 @@ class Price {
         this.pair = pair;
         this.timestamp = timestamp;
     }
-
     mid() {
         return (this.buy + this.sell)/2;
     }
-
     quote() {
         var ans="";
         for (var i=3;i<this.pair.length;i++) ans += this.pair[i];
         return ans;
     }
-
 } 
 
 let ds = new DataSource();
@@ -51,33 +48,3 @@ ds.getPrices().then(prices => {
 }).catch(error => {
     console.err(error)
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</script>	
-
-		
