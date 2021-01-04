@@ -3,6 +3,12 @@
 // Input: `n` - any integer from `0` to `Number.MAX_SAFE_INTEGER`.
 // Output: `return` - summation to `n`, i.e. sum_to_n(5) === 1 + 2 + 3 + 4 + 5 === 15.
 
+// recursive fashion -> similar to factorial function
+function summation(x) {
+  if (x==1) return 1;
+  else return x+summation(x-1);
+}
+
 var sum_to_n = function(n) {
-    // your code here
+  return summation(n);
 };
