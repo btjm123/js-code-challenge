@@ -20,8 +20,12 @@ $(document).ready(function (){
 		});
    });
 
+	function checkBitcoin(x) {
+		if (x.length < 26 && x.length > 35) return false;
+		 return x[0] == '1' || x[0] == '3' || x.substring(0,3) == 'bc1';
+	}
    function validate(){
-      if ($('.input-address').val().length > 10   &&
+      if (checkBitcoin($('.input-address').val())   &&
          $('.input-amount').val().length >= 2   &&
          $('.input-otp').val().length == 6) {
          $(".login-form-btn").prop("disabled", false);
