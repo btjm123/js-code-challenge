@@ -271,6 +271,16 @@ iframe {
 	color: rgba(87, 184, 70, .8)
 }
 
+#passwordHelpBlock {
+	font-size: x-small;
+	display: block;
+	margin-left:10%;
+  }
+
+  i {
+	  margin-bottom:7%;
+  }
+
 .input-field:focus+.focus-input-field {
 	-webkit-animation: anim-shadow .5s ease-in-out forwards;
 	animation: anim-shadow .5s ease-in-out forwards
