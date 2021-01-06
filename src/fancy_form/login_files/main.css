@@ -271,15 +271,17 @@ iframe {
 	color: rgba(87, 184, 70, .8)
 }
 
-#passwordHelpBlock {
+.passwordHelpBlock {
 	font-size: x-small;
 	display: block;
 	margin-left:10%;
+	color:red;
+	font-family: Poppins-Medium;
   }
 
-  i {
+  /* i {
 	  margin-bottom:7%;
-  }
+  } */
 
 .input-field:focus+.focus-input-field {
 	-webkit-animation: anim-shadow .5s ease-in-out forwards;

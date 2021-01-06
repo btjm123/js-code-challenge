@@ -1,40 +1,77 @@
 
 $(document).ready(function (){
-      validate();
-      $('.input-address, .input-amount, .input-otp').keyup(validate);
-      var smsOTP = document.querySelector('.input-otp');
-         
-		smsOTP.oninput = function() {
-			if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
-		}
-		document.querySelector(".input-amount").addEventListener("keypress", function (evt) {
-			if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
-				evt.preventDefault();
-			}
-		});
-		
-		document.querySelector(".input-otp").addEventListener("keypress", function (evt) {
-			if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
-				evt.preventDefault();
-			}
-		});
-   });
-
-	function checkBitcoin(x) {
-		if (x.length < 26 && x.length > 35) return false;
-		 return x[0] == '1' || x[0] == '3' || x.substring(0,3) == 'bc1';
+    validate();
+	$('.input-address, .input-amount, .input-otp').keyup(validate);
+	$('.input-address').keyup(adjustAddress);
+	$('.input-amount').keyup(adjustAmount);
+	$('.input-otp').keyup(adjustOTP);
+    var smsOTP = document.querySelector('.input-otp');
+	var smallTexts = $('.passwordHelpBlock').hide(); 
+	smsOTP.oninput = function() {
+		if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
 	}
-   function validate(){
-      if (checkBitcoin($('.input-address').val())   &&
-         $('.input-amount').val().length >= 2   &&
-         $('.input-otp').val().length == 6) {
-         $(".login-form-btn").prop("disabled", false);
-      }
-      else {
-         $(".login-form-btn").prop("disabled", true);
-      }
+	document.querySelector(".input-amount").addEventListener("keypress", function (evt) {
+		if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+			evt.preventDefault();
+		}
+	});
+		
+	document.querySelector(".input-otp").addEventListener("keypress", function (evt) {
+		if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+			evt.preventDefault();
+		}
+	});
+});
+
+
+function adjustAddress() {
+	if (checkBitcoin($('.input-address').val())) {
+		$('.passwordHelpBlock:eq(0)').hide();
+		$('.fa-bitcoin').css('margin-bottom', '0');
+	} else {
+		$('.passwordHelpBlock:eq(0)').show();
+		$('.fa-bitcoin').css('margin-bottom', '7%');
+	}
+
+}
+
+function adjustAmount() {
+	if ($('.input-amount').val().length >= 2) {
+		$('.passwordHelpBlock:eq(1)').hide();
+		$('.fa-money').css('margin-bottom', '0');
+	} else {
+		$('.passwordHelpBlock:eq(1)').show();
+		$('.fa-money').css('margin-bottom', '7%');
+	}
+
+}
+
+function adjustOTP() {
+	if ($('.input-otp').val().length == 6) {
+		$('.passwordHelpBlock:eq(2)').hide();
+		$('.fa-phone').css('margin-bottom', '0');
+	} else {
+		$('.passwordHelpBlock:eq(2)').show();
+		$('.fa-phone').css('margin-bottom', '7%');
+	}
+}
+   
+function checkBitcoin(x) {
+	if (x.length < 26 || x.length > 35) return false;
+	return x[0] == '1' || x[0] == '3' || x.substring(0,3) == 'bc1';
+}
+function validate(){
+    if (checkBitcoin($('.input-address').val())   &&
+    	$('.input-amount').val().length >= 2   &&
+        $('.input-otp').val().length == 6) {
+        $(".login-form-btn").prop("disabled", false);
+    }
+    else {
+        $(".login-form-btn").prop("disabled", true);
+    }
       // alert($(".login-form-btn").prop("disabled"));
-   }
+}
+
 		particlesJS("particles-js", {
 		"particles": {
 		"number": {
