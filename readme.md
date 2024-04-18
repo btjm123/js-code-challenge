@@ -1,5 +1,7 @@
 # NGNRS Code Challenge #1 #
 
+# Update: I was offered in the end 🟢 but couldn't commit as I had to enlist into NS :<
+
 Note that if you fork this repository, your responses may be publicly available.  
 Please submit your application along with the solutions attached or linked.   
 
